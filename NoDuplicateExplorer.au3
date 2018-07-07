@@ -1,4 +1,5 @@
 #include <Array.au3>
+#NoTrayIcon
 
 Global $explorer
 
