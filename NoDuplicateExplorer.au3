@@ -29,12 +29,13 @@ While True
 			EndIf
 		EndIf
 	Next
-	Sleep(256)
+	Sleep(512)
 WEnd
 
 Func KillIfForgottenExplorer($win)
 	Local $title = WinGetTitle($win)
-	if $title == "Window" Or WinGetClientSize($win)[0] <= 0 Then Return
+	;Filtering out Property dialog and simmilar explorer windows
+	if $title == "Window" Or Not StringInStr(WinGetClassList($win), "UIRibbonCommandBarDock") Or WinGetClientSize($win)[0] <= 0 Then Return
 	Sleep(2048) ;In case the user is just clicking through folders and is in the same folder as another window for a short period of time
 	If WinGetTitle($win) <> $title Or WinActive($win) Then Return
 	WinKill($win)
